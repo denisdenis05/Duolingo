@@ -14,7 +14,7 @@ public class Program
         var host = Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
-                var path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../Interview.Api")); 
+                var path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../Duolingo.API")); 
                 config.SetBasePath(path)
                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                     .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true)
@@ -24,7 +24,7 @@ public class Program
             {
                 services.AddDbContext<DuolingoDbContext>(options =>
                     options.UseNpgsql(context.Configuration.GetConnectionString("DefaultConnection"),
-                        b => b.MigrationsAssembly("Interview.Migrations")));
+                        b => b.MigrationsAssembly("Duolingo.Migrations")));
             })
             .Build();
         host.Run();
